@@ -1,5 +1,5 @@
-from fabric.api import sudo, local, settings, env
-from fabric.colors import green, red, yellow
+from fabric.api import sudo, local, env
+from fabric.colors import green
 
 env.hosts = ['localhost']
 
