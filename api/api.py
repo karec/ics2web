@@ -1,5 +1,4 @@
 from flask import Flask, jsonify
-from icalendar import Calendar
 
 app = Flask(__name__)
 
@@ -22,7 +21,7 @@ dic = [
     }
 ]
 
-@app.route('/get')
+@app.route('/api/get/')
 def get():
     return jsonify({'event': dic})
 

@@ -1,4 +1,4 @@
-from icalendar import Calendar, vDatetime
+from icalendar import Calendar
 from datetime import datetime, date
 import requests
 from pytz import timezone
