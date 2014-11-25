@@ -1,8 +1,7 @@
 # -*- coding:utf-8 -*-
 import logging
-import requests
 
-logging.basicConfig(filename="api.log", level=logging.ERROR)
+logging.basicConfig(filename="api.log", level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 
