@@ -8,12 +8,14 @@ import requests_cache
 
 app = Flask(__name__)
 
+URL_BASE = "https://www.google.com/calendar/ical/"
+
 requests_cache.install_cache('/tmp/ics-api-cache', expire_after=600)
 
 
 @app.route('/')
 def index():
-    return "Hello world"
+    return "Server is Running"
 
 
 @app.route('/api/get/', methods=['GET'])
