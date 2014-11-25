@@ -47,14 +47,18 @@
 			</div>
 			</div>
 			
-			<div class="col_3 roombox center">
-			<h4>Algo</h4>
-			<h5>De 16:30 à 23:42</h5>
+			<div class="col_3 bg-algo">
+			<div class="col_12 center">
+			<h4 class="clock">Algorithme</h4>
+			<h5 class="clock">De 16:30 à 23:42</h5>
+			</div>
 			</div>
 			
-			<div class="col_3 roombox center">
-			<h4>Algo</h4>
-			<h5>De 16:30 à 23:42</h5>
+			<div class="col_3 bg-php">
+			<div class="col_12 center">
+			<h4 class="clock">PHP</h4>
+			<h5 class="clock">De 16:30 à 23:42</h5>
+			</div>
 			</div>
 
 		</div>
@@ -62,24 +66,22 @@
 
 
 	<div class="col_3">
-	<div class="col_12 clock center" ng-controller="getDatetimeController">
+	<div class="col_12 center clock" ng-controller="getDatetimeController">
 	<h3><i class="icon-time"></i> Heure</h3>
 	<h2>{{date}}</h2>
 	
 	
 	
 	</div>
-	<div class="col_12 personne center" ng-controller="customersController">
-	<h5><i class="icon-group"> </i>Personnes concernées</h5>
-	<!-- <h6>login_a</h6>
-	<h6>login_a</h6>
-	<h6>login_a</h6>
-	<h6>login_a</h6> -->
-			<ul class="icons">
+	<div class="col_12 personne container" ng-controller="customersController">
+	<h5 class="center"><i class="icon-group"> </i>Personnes concernées</h5>
+	
+			<div class="container">
+			<ul class="icons marquee">
 		  		<li ng-repeat="x in names"><i class="icon-user"></i>{{x.Name}}</li>
 	 		
 			</ul>
-	
+			</div>	
 	</div>
 	
 	</div>
