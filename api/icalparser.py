@@ -23,7 +23,7 @@ def ical_to_dict(stream):
     """
 
     ret = []
-    content = r.content
+    content = stream.content
     day_end = UTC.localize(datetime.combine(date.today(), datetime.max.time()))
     now = UTC.localize(datetime.now())
     cal = Calendar.from_ical(content)
