@@ -1,10 +1,8 @@
 from datetime import datetime, date
 from icalendar import Calendar
-from pytz import timezone
-from helpers import attendee_to_login as to_log
+import pytz
+from helpers import attendee_to_login as to_log, format_room, set_utc
 import logging
-
-UTC = timezone('Europe/Paris')
 
 
 def ical_to_dict(stream):
@@ -15,15 +13,14 @@ def ical_to_dict(stream):
     :return: a dict containing formated data
     :rtype: dict
     """
-
     ret = []
     try:
         content = stream.content
     except AttributeError:
         logging.error('Bad ics file provided')
         return False
-    day_end = UTC.localize(datetime.combine(date.today(), datetime.max.time()))
-    now = UTC.localize(datetime.now())
+    day_end = datetime.combine(date.today(), datetime.max.time()).replace(tzinfo=pytz.UTC)
+    now = set_utc(datetime.now(tz=pytz.UTC))
     try:
         cal = Calendar.from_ical(content)
     except ValueError:
@@ -31,15 +28,22 @@ def ical_to_dict(stream):
         return False
     for ev in cal.walk():
         if ev.name == 'VEVENT':
-            if ev.get('DTEND').dt > now >= ev.get('DTSTART').dt:
-                event = {'place': ev.get('LOCATION').to_ical(),
+            ev_start = set_utc(ev.get('DTSTART').dt)
+            ev_end = set_utc(ev.get('DTEND').dt)
+            if ev_end > now >= ev_start:
+                print ev_start
+                event = {'place': format_room(ev.get('LOCATION').to_ical()),
                          'name': ev.get('SUMMARY').to_ical(),
-                         'personnes': to_log(ev.get('ATTENDEE'))}
+                         'personnes': to_log(ev.get('ATTENDEE')),
+                         'start': str(ev_start),
+                         'end': str(ev_end)}
                 ret.append(event)
-    next_ev = [{'name': ev.get('SUMMARY').to_ical(), 'place': ev.get('LOCATION').to_ical().replace('\\', ''),
-                'end': str(ev.get('DTEND').dt),
-                'start': str(ev.get('DTSTART').dt)}
+    next_ev = [{'name': ev.get('SUMMARY').to_ical(),
+                'place': format_room(ev.get('LOCATION').to_ical().replace('\\', '')),
+                'end': str(set_utc(ev.get('DTEND').dt)),
+                'start': str(set_utc(ev.get('DTSTART').dt))}
                for ev in cal.walk()
                if ev.name == "VEVENT" and (now < ev.get('DTSTART').dt <= day_end)]
+    next_ev = sorted(next_ev, key=lambda k: k['start'])
     val = {'current_events': ret, 'next_events': next_ev}
     return val
