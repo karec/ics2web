@@ -9,11 +9,12 @@ UTC = timezone('Europe/Paris')
 ICAL_TEST_DIR = "/home/manu/test.ics"
 
 
-def ical_to_dict(stream):
+def ical_to_dict(stream, url):
     """
     get all event of the current day and format them to a dict ready to be encoded in json
 
     :param stream: icalendar file object from get request
+    :param url: url requested for cache verification
     :return: a dict containing formated data
     :rtype: dict
     """
