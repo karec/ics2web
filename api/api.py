@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
@@ -21,9 +21,10 @@ dic = [
     }
 ]
 
-@app.route('/api/get/')
+@app.route('/api/get/', methods=['GET'])
 def get():
-    return jsonify({'event': dic})
+    #return jsonify({'event': dic})
+    return request.args.get('url')
 
 if __name__ == '__main__':
     app.run(debug=True)

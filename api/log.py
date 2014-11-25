@@ -11,3 +11,5 @@ def get_status_code(request):
         msg_error = "Une erreur est survenue. La page demandée a retourner le code d'erreur {0} : {1}"
         msg_error = msg_error.format(request.status_code, request.reason)
         logger.error(msg_error)
+        return False
+    return True
