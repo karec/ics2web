@@ -43,5 +43,5 @@ def ical_to_dict(stream):
     return val
 
 
-r = requests.get('https://www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.icds', stream=True)
+r = requests.get('https://www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.ics', stream=True)
 print ical_to_dict(r)
