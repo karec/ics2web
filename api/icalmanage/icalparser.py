@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from icalendar import Calendar
 from pytz import timezone
-from helpers import attendee_to_login as to_log
+from helpers import attendee_to_login as to_log, format_room
 import logging
 
 UTC = timezone('Europe/Paris')
@@ -15,7 +15,6 @@ def ical_to_dict(stream):
     :return: a dict containing formated data
     :rtype: dict
     """
-
     ret = []
     try:
         content = stream.content
@@ -32,11 +31,12 @@ def ical_to_dict(stream):
     for ev in cal.walk():
         if ev.name == 'VEVENT':
             if ev.get('DTEND').dt > now >= ev.get('DTSTART').dt:
-                event = {'place': ev.get('LOCATION').to_ical(),
+                event = {'place': format_room(ev.get('LOCATION').to_ical()),
                          'name': ev.get('SUMMARY').to_ical(),
                          'personnes': to_log(ev.get('ATTENDEE'))}
                 ret.append(event)
-    next_ev = [{'name': ev.get('SUMMARY').to_ical(), 'place': ev.get('LOCATION').to_ical().replace('\\', ''),
+    next_ev = [{'name': ev.get('SUMMARY').to_ical(),
+                'place': format_room(ev.get('LOCATION').to_ical().replace('\\', '')),
                 'end': str(ev.get('DTEND').dt),
                 'start': str(ev.get('DTSTART').dt)}
                for ev in cal.walk()

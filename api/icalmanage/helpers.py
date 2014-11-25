@@ -26,3 +26,16 @@ def get_room(events, room):
     :rtype: list
     """
     pass
+
+
+def format_room(room):
+    """
+    Format room name for display
+
+    :param room: The string representing the room
+    :return: the formatted string
+    :rtype: str
+    """
+    room = room.replace('Salle - ', '')
+    room = room.replace('SM -', 'Salle')
+    return room
