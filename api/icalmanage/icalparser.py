@@ -1,17 +1,10 @@
-from icalendar import Calendar
 from datetime import datetime, date
-from helpers import attendee_to_login as to_log
-import requests
+from icalendar import Calendar
 from pytz import timezone
-import requests_cache
-from log import logger
-
+from helpers import attendee_to_login as to_log
+import logging
 
 UTC = timezone('Europe/Paris')
-
-ICAL_TEST_DIR = "/home/manu/test.ics"
-
-requests_cache.configure('/tmp/cache', expire_after=10)
 
 
 def ical_to_dict(stream):
@@ -24,13 +17,17 @@ def ical_to_dict(stream):
     """
 
     ret = []
-    content = stream.content
+    try:
+        content = stream.content
+    except AttributeError:
+        logging.error('Bad ics file provided')
+        return False
     day_end = UTC.localize(datetime.combine(date.today(), datetime.max.time()))
     now = UTC.localize(datetime.now())
     try:
         cal = Calendar.from_ical(content)
     except ValueError:
-        logger.error("Bad ics file")
+        logging.error('Bad ics file provided')
         return False
     for ev in cal.walk():
         if ev.name == 'VEVENT':
@@ -46,7 +43,3 @@ def ical_to_dict(stream):
                if ev.name == "VEVENT" and (now < ev.get('DTSTART').dt <= day_end)]
     val = {'current_events': ret, 'next_events': next_ev}
     return val
-
-
-r = requests.get('https://www.google.com/', stream=True)
-print ical_to_dict(r)
