@@ -4,6 +4,7 @@ from helpers import attendee_to_login as to_log
 import requests
 from pytz import timezone
 import requests_cache
+from log import logger
 
 
 UTC = timezone('Europe/Paris')
@@ -26,7 +27,11 @@ def ical_to_dict(stream):
     content = stream.content
     day_end = UTC.localize(datetime.combine(date.today(), datetime.max.time()))
     now = UTC.localize(datetime.now())
-    cal = Calendar.from_ical(content)
+    try:
+        cal = Calendar.from_ical(content)
+    except ValueError:
+        logger.error("Bad ics file")
+        return False
     for ev in cal.walk():
         if ev.name == 'VEVENT':
             if ev.get('DTEND').dt > now >= ev.get('DTSTART').dt:
@@ -43,5 +48,5 @@ def ical_to_dict(stream):
     return val
 
 
-r = requests.get('https://www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.ics', stream=True)
+r = requests.get('https://www.google.com/', stream=True)
 print ical_to_dict(r)
