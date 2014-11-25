@@ -1,29 +1,31 @@
 from icalendar import Calendar
 from datetime import datetime, date
-from helpers import attendee_to_login as to_log, get_room
+from helpers import attendee_to_login as to_log
 import requests
 from pytz import timezone
+import requests_cache
+
 
 UTC = timezone('Europe/Paris')
 
 ICAL_TEST_DIR = "/home/manu/test.ics"
 
+requests_cache.configure('/tmp/cache', expire_after=10)
 
-def ical_to_dict(stream, url):
+
+def ical_to_dict(stream):
     """
     get all event of the current day and format them to a dict ready to be encoded in json
 
     :param stream: icalendar file object from get request
-    :param url: url requested for cache verification
     :return: a dict containing formated data
     :rtype: dict
     """
+
     ret = []
-    content = ""
+    content = r.content
     day_end = UTC.localize(datetime.combine(date.today(), datetime.max.time()))
     now = UTC.localize(datetime.now())
-    for block in stream.iter_content(1024):
-        content += block
     cal = Calendar.from_ical(content)
     for ev in cal.walk():
         if ev.name == 'VEVENT':
