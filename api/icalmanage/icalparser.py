@@ -30,20 +30,18 @@ def ical_to_dict(stream):
         if ev.name == 'VEVENT':
             ev_start = set_utc(ev.get('DTSTART').dt)
             ev_end = set_utc(ev.get('DTEND').dt)
-            print "now : %s" % now
-            print "end : %s" % ev_end
             if ev_end > now >= ev_start:
                 print ev_start
                 event = {'place': format_room(ev.get('LOCATION').to_ical()),
                          'name': ev.get('SUMMARY').to_ical(),
                          'personnes': to_log(ev.get('ATTENDEE')),
-                         'start': str(ev.get('DTSTART').dt),
-                         'end': str(ev.get('DTEND').dt)}
+                         'start': str(ev_start),
+                         'end': str(ev_end)}
                 ret.append(event)
     next_ev = [{'name': ev.get('SUMMARY').to_ical(),
                 'place': format_room(ev.get('LOCATION').to_ical().replace('\\', '')),
-                'end': str(ev.get('DTEND').dt),
-                'start': str(ev.get('DTSTART').dt)}
+                'end': str(set_utc(ev.get('DTEND').dt)),
+                'start': str(set_utc(ev.get('DTSTART').dt))}
                for ev in cal.walk()
                if ev.name == "VEVENT" and (now < ev.get('DTSTART').dt <= day_end)]
     next_ev = sorted(next_ev, key=lambda k: k['start'])
