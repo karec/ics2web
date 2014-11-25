@@ -10,13 +10,16 @@ function getDatetimeController($scope,$timeout) {
 
 	var  myHour = function() {
 		var d = new Date();
+		d.toLocaleTimeString();
 	var h = d.getHours();
-	var m = d.getMinutes();
+	var m = d.getUTCMinutes();
+	var t = d.toLocaleTimeString();
+
 
 	
 
-  	$scope.date = h+" : "+m;
-  	$timeout(myHour, 5000);
+  	$scope.date = t;
+  	$timeout(myHour, 500);
 
 
 
