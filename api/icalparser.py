@@ -36,9 +36,9 @@ def ical_to_dict(stream):
                 'start': str(ev.get('DTSTART').dt)}
                for ev in cal.walk()
                if ev.name == "VEVENT" and (now < ev.get('DTSTART').dt <= day_end)]
-    print next_ev
-    print ret
+    val = {'current_events': ret, 'next_events': next_ev}
+    return val
 
 
 r = requests.get('https://www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.ics', stream=True)
-ical_to_dict(r)
+print ical_to_dict(r)
