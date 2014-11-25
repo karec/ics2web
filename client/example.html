@@ -28,8 +28,8 @@
 		<h3><i class="icon-home"></i> <span > Salle 301 </span></h3>
 		</div>
 		
-		<div class="roomname">
-		<h1>Mathématique</h1>
+		<div ng-controller="icsObjectController" class="roomname">
+		<h1>{{ics.current_events[name]}}</h1>
 		</div>
 		<div class="roomname">
 		<h2>De 14:42 à 15:42</h2>
@@ -60,6 +60,12 @@
 			<h5 class="clock">De 16:30 à 23:42</h5>
 			</div>
 			</div>
+			<div class="col_3 bg-php">
+			<div class="col_12 center">
+			<h4 class="clock">PHP</h4>
+			<h5 class="clock">De 16:30 à 23:42</h5>
+			</div>
+			</div>
 
 		</div>
 	</div>
@@ -78,7 +84,7 @@
 	
 			<div class="container">
 			<ul class="icons marquee">
-		  		<li ng-repeat="x in names"><i class="icon-user"></i>{{x.Name}}</li>
+			<li ng-repeat="x in names"><i class="icon-user"></i>{{x.Name}} <span ng-if="$index < 5">{{$index}}</span></li>
 	 		
 			</ul>
 			</div>	
@@ -90,26 +96,13 @@
 	<hr />
 	
 	<div class="col_3 bg-anglais">
-	<div class="col_12 center">
-	<h4 class="clock">Anglais</h4>
+	<div class="col_12 center" ng-controller="icsObjectController">
+	<h4 ng-repeat="val in ics" class="clock">{{val.next_events.name}}</h4>
 	<h5 class="clock">De 16:30 à 23:42</h5>
 	</div>
 	</div>
 	
-	<div class="col_3 roombox center">
-	<h4>Algo</h4>
-	<h5>De 16:30 à 23:42</h5>
-	</div>
 	
-	<div class="col_3 roombox center">
-	<h4>Algo</h4>
-	<h5>De 16:30 à 23:42</h5>
-	</div>
-	
-	<div class="col_3 roombox center">
-	<h4>Algo</h4>
-	<h5>De 16:30 à 23:42</h5>
-</div>
 
 </div><!-- END GRID -->
 

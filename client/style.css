@@ -24,19 +24,23 @@
 
 .bg-anglais {
 	background: url("http://wizztiti.com/wp-content/uploads/2013/02/drapeau-anglais.jpg") no-repeat right top;
+	box-shadow: 10px 10px 10px grey;
 }
 
 .bg-math {
 	background: url("fde31_800.jpg") no-repeat right top;
+	box-shadow: 10px 10px 10px grey;
 }
 
 
 .bg-algo {
 	background: url("http://www.downloadsource.es/upload/Screeny/The%20Matrix%20Screensaver1.png") no-repeat right top;
+	box-shadow: 10px 10px 10px grey;
 }
 
 .bg-php {
 	background: url("http://i1058.photobucket.com/albums/t412/submitx/php-tutorials_zps9c813341.jpg") no-repeat right top;
+	box-shadow: 10px 10px 10px grey;
 }
 
 .clock{
@@ -46,6 +50,7 @@
 	background: -webkit-linear-gradient(top, rgba(51, 51, 51, 0.7) 0%,rgba(61, 61, 61, 0.5) 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(top, rgba(51, 51, 51, 0.5) 0%,rgba(61, 61, 61, 0.5) 100%); /* Opera11.10+ */
     background: linear-gradient(top, rgba(51, 51, 51, 0.5) 0%,rgba(61, 61, 61, 0.5) 100%); /* W3C */
+    
 }
 .roombox {
 	/*border-radius: 30px;*/
@@ -90,15 +95,18 @@
     background: linear-gradient(top, rgba(51, 51, 51, 0.5) 0%,rgba(61, 61, 61, 0.5) 100%); /* W3C */
     color: white;
     height: 250px;
-    padding-left: : 5%;
+    padding-left: : 5px;
+    box-shadow: 10px 10px 10px grey;
+    
     
     
 }
-
+/*Annimation personne vertical*/
 .marquee {
     top: 0;
     position: relative;
     box-sizing: border-box;
+    webkit-animation: marquee 20s linear infinite;
     animation: marquee 20s linear infinite;
 }
 
@@ -113,14 +121,17 @@
 }
 
 /* Make it move! */
+@-webkit-keyframes marquee {
+    0%   { top:   5% }
+    100% { top: -100% }
+}
 @keyframes marquee {
     0%   { top:   5% }
     100% { top: -100% }
 }
 
-.personne li {
-	animation: scroll 100s linear 4s infinite;
-}
+/* FIN Annimation personne vertical*/
+
 
 h1,h2,h3,h4,h5,h6{
 font-family: "Arimo", arial, verdana, sans-serif;
