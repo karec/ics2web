@@ -1,3 +1,7 @@
+from datetime import datetime
+from pytz import timezone
+
+
 def attendee_to_login(attendee):
     """
     Get a list of vCalAddress and return a list of string without domain name in mail address
@@ -12,6 +16,12 @@ def attendee_to_login(attendee):
     for i in attendee:
         ret.append(i.to_ical().split('mailto:')[1].split('@')[0])
     return ret
+
+
+def set_utc(dt):
+    utc_of = timezone('Europe/Paris')
+    now = datetime.now()
+    return dt + utc_of.utcoffset(now)
 
 
 def get_room(events, room):
