@@ -1,9 +1,6 @@
 IcalManage package
 ==================
 
-Submodules
-----------
-
 api.icalmanage.helpers module
 -----------------------------
 
@@ -20,11 +17,9 @@ api.icalmanage.icalparser module
     :undoc-members:
     :show-inheritance:
 
+Using the parser
+----------------
 
-Module contents
----------------
+Adding helper
+-------------
 
-.. automodule:: api.icalmanage
-    :members:
-    :undoc-members:
-    :show-inheritance:
