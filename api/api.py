@@ -12,18 +12,33 @@ cors = CORS(app, ressources={r"/api/*": {"origins": "*"}})
 
 requests_cache.install_cache('/tmp/ics-api-cache', expire_after=600)
 
-
 @app.route('/')
 def index():
+    """
+    Simple message to make sure the server is running
+
+    :return: Simple string message
+    """
+
     return "Server is Running"
 
 @app.route('/api/get/doc/')
 def doc():
+    """
+    Redirect to the ics2web Documentation
+
+    :return: None
+    """
     return redirect('http://ics2web.readthedocs.org/en/latest/#indices-and-tables')
 
 
 @app.route('/api/get/', methods=['GET'])
 def get():
+    """
+    Simple method who take a ICS URL and and return a JSON Dictionnary. Also handle some error.
+
+    :return: Json Dictionnary
+    """
     get_return_request = request.args.get('url', "")
     try:
         r = requests.get(get_return_request, stream=True)
