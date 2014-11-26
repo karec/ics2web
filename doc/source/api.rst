@@ -2,8 +2,8 @@ api package
 ===========
 API Routes where you define each route and their functions.
 
-We also use a Cache file who are invalidate every 10minutes. Feel free to modificate it at your ease.
-You can find it in the begginning of the api.py file.
+We also use a Cache file who are invalidate every 10minutes. Feel free to change it at your ease.
+You can find it in the beginning of the api.py file.
 
 .. code-block:: python
 
@@ -11,6 +11,10 @@ You can find it in the begginning of the api.py file.
 
 1. Argument: Location of the cache directory.
 2. Argument: Time before expiration in seconds.
+
+See requests-cache_ doc for more information.
+
+.. _requests-cache: http://requests-cache.readthedocs.org/en/latest/
 
 API Routes
 ----------
@@ -22,9 +26,9 @@ Return "Server Running"
 
 .. code-block:: python
 
-    @app.route('/api/get/doc/')
+    @app.route('/api/doc/')
 
-Redirect to the `Doc ics2web <http://ics2web.readthedocs.org/en/latest/#indices-and-tables/>`_.
+Redirect to `Doc ics2web <http://ics2web.readthedocs.org/en/latest/#indices-and-tables/>`_.
 
 .. code-block:: python
 
@@ -34,23 +38,76 @@ Redirect to the `Doc ics2web <http://ics2web.readthedocs.org/en/latest/#indices-
 
 Take the link provided in the URL like: "/api/get?url= <URL>"
 This function handle multiple error like "*Bad URL Provided*", "*Bad ICS File*", "*HTTP Exception*".
-If everything went well, it return a json dictionnary.
-Else and exception is raise.
+It will also return a 400 : Bad request error
 
-Add Routes to api
------------------
-To add a route in the api go to api.py and add something like:
+If everything went well, it return a json dictionnary.
+Else an exception is raised.
+
+Example of json returned by the api :
 
 .. code-block:: python
 
-    @app.route('/api/get/doc/')
+    {
+      "current_events": [
+        {
+          "end": "2014-11-26T19:00:00",
+          "name": "Test1",
+          "personnes": [
+            "pigot_a",
+            "valett_e",
+            "bene_t"
+          ],
+          "place": "",
+          "start": "2014-11-26T16:00:00"
+        },
+        {
+          "end": "2014-11-26T19:30:00",
+          "name": "Test3",
+          "personnes": [
+            "pigot_a",
+            "valett_e",
+            "bene_t"
+          ],
+          "place": "",
+          "start": "2014-11-26T15:30:00"
+        }
+      ],
+      "next_events": [
+        {
+          "end": "2014-11-26T23:30:00",
+          "name": "Test0",
+          "place": "",
+          "start": "2014-11-26T19:30:00"
+        }
+      ]
+    }
 
+Add Routes to api
+-----------------
+Since the api run Flask_, to add a route in the api go to api.py and add your function like this:
 
-Which will do something when you are in the "/api/get/doc/". To be able to do some action define a function under that:
+.. _Flask: http://flask.pocoo.org/
+
+.. code-block:: python
+
+    @app.route('/api/doc/')
+    def doc():
+        # logic here
+        pass
+
+Which will do something when you are in the "/api/get/doc/". To be able to do some action define a function like this:
 
 .. code-block:: python
 
     def doc():
+
+
+And add your route decorator :
+
+.. code-block:: python
+
+    @app.route('/api/doc/')
+
 
 
 Under that, put your logic in it. For exemple:
@@ -64,7 +121,7 @@ Here's the complete code:
 
 .. code-block:: python
 
-    @app.route('/api/get/doc/')
+    @app.route('/api/doc/')
     def doc():
         return redirect('http://ics2web.readthedocs.org/en/latest/#indices-and-tables')
 
