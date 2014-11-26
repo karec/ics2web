@@ -15,7 +15,10 @@ def ical_to_dict(stream):
     """
     ret = []
     try:
-        content = stream.content
+        if hasattr(stream, 'content'):
+            content = stream.content
+        else:
+            content = stream.read()
     except AttributeError:
         logging.error('Bad ics file provided')
         return False
