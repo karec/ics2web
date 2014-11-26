@@ -1,4 +1,4 @@
-api.helpers package
+Api helpers package
 ===================
 
 Submodules

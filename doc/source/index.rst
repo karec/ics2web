@@ -20,8 +20,9 @@ IcalManage
 
 .. toctree::
 
-   api.helpers
+   api
    api.icalmanage
+   api.helpers
 
 
 
