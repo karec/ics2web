@@ -10,8 +10,6 @@ import requests_cache
 app = Flask(__name__)
 cors = CORS(app, ressources={r"/api/*": {"origins": "*"}})
 
-URL_BASE = "https://www.google.com/calendar/ical/"
-
 requests_cache.install_cache('/tmp/ics-api-cache', expire_after=600)
 
 
