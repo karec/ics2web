@@ -26,7 +26,7 @@ Return "Server Running"
 
 .. code-block:: python
 
-    @app.route('/api/get/doc/')
+    @app.route('/api/doc/')
 
 Redirect to `Doc ics2web <http://ics2web.readthedocs.org/en/latest/#indices-and-tables/>`_.
 
@@ -90,7 +90,7 @@ Since the api run Flask_, to add a route in the api go to api.py and add your fu
 
 .. code-block:: python
 
-    @app.route('/api/get/doc/')
+    @app.route('/api/doc/')
     def doc():
         # logic here
         pass
@@ -106,7 +106,7 @@ And add your route decorator :
 
 .. code-block:: python
 
-    @app.route('/api/get/doc/')
+    @app.route('/api/doc/')
 
 
 
@@ -121,7 +121,7 @@ Here's the complete code:
 
 .. code-block:: python
 
-    @app.route('/api/get/doc/')
+    @app.route('/api/doc/')
     def doc():
         return redirect('http://ics2web.readthedocs.org/en/latest/#indices-and-tables')
 
