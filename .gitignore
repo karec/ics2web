@@ -1,3 +1,6 @@
 .idea/
 *.pyc
 *.log
+doc/html
+build/
+
