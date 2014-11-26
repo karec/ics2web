@@ -1,5 +1,5 @@
-api.icalmanage package
-======================
+IcalManage package
+==================
 
 Submodules
 ----------

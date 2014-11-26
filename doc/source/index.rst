@@ -6,7 +6,18 @@
 Welcome to ics2web's documentation!
 ===================================
 
-Contents:
+This module is a very simple and light api for
+
+API
+---
+
+The core of the application
+
+IcalManage
+----------
+
+* :doc:`api.icalmanage`
+
 
 .. toctree::
    :maxdepth: 2

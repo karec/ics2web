@@ -1,16 +1,10 @@
 api package
 ===========
 
-Subpackages
------------
-
-.. toctree::
-
-    api.helpers
-    api.icalmanage
-
-Submodules
+API Routes
 ----------
+
+
 
 api.api module
 --------------
@@ -20,11 +14,11 @@ api.api module
     :undoc-members:
     :show-inheritance:
 
+Subpackages
+-----------
 
-Module contents
----------------
+.. toctree::
 
-.. automodule:: api
-    :members:
-    :undoc-members:
-    :show-inheritance:
+    api.helpers
+    api.icalmanage
+
