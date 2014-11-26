@@ -18,12 +18,11 @@ IcalManage
 
 * :doc:`api.icalmanage`
 
-
 .. toctree::
-   :maxdepth: 2
+   :numbered:
 
-   test
-   othertest
+   api.helpers
+   api.icalmanage
 
 
 
