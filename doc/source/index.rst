@@ -19,7 +19,6 @@ IcalManage
 * :doc:`api.icalmanage`
 
 .. toctree::
-   :numbered:
 
    api.helpers
    api.icalmanage

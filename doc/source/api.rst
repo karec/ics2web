@@ -15,7 +15,6 @@ api.api module
 .. automodule:: api.api
     :members:
     :undoc-members:
-    :show-inheritance:
 
 Subpackages
 -----------
