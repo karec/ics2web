@@ -2,8 +2,8 @@ api package
 ===========
 API Routes where you define each route and their functions.
 
-We also use a Cache file who are invalidate every 10minutes. Feel free to modificate it at your ease.
-You can find it in the begginning of the api.py file.
+We also use a Cache file who are invalidate every 10minutes. Feel free to change it at your ease.
+You can find it in the beginning of the api.py file.
 
 .. code-block:: python
 
