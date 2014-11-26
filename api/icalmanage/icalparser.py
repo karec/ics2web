@@ -1,7 +1,7 @@
 from datetime import datetime, date
 from icalendar import Calendar
 import pytz
-from helpers import attendee_to_login as to_log, format_room, set_utc
+from helpers import attendee_to_login as to_log, format_room, set_utc, format_dt
 import logging
 
 
@@ -35,13 +35,13 @@ def ical_to_dict(stream):
                 event = {'place': format_room(ev.get('LOCATION').to_ical()),
                          'name': ev.get('SUMMARY').to_ical(),
                          'personnes': to_log(ev.get('ATTENDEE')),
-                         'start': str(ev_start),
-                         'end': str(ev_end)}
+                         'start': format_dt(ev_start),
+                         'end': format_dt(ev_end)}
                 ret.append(event)
     next_ev = [{'name': ev.get('SUMMARY').to_ical(),
                 'place': format_room(ev.get('LOCATION').to_ical().replace('\\', '')),
-                'end': str(set_utc(ev.get('DTEND').dt)),
-                'start': str(set_utc(ev.get('DTSTART').dt))}
+                'end': format_dt(set_utc(ev.get('DTEND').dt)),
+                'start': format_dt(set_utc(ev.get('DTSTART').dt))}
                for ev in cal.walk()
                if ev.name == "VEVENT" and (now < ev.get('DTSTART').dt <= day_end)]
     next_ev = sorted(next_ev, key=lambda k: k['start'])
