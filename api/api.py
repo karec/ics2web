@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect
 from helpers.log import get_status_code
 from werkzeug.exceptions import BadRequest
 from icalmanage.icalparser import ical_to_dict
@@ -16,6 +16,10 @@ requests_cache.install_cache('/tmp/ics-api-cache', expire_after=600)
 @app.route('/')
 def index():
     return "Server is Running"
+
+@app.route('/api/get/doc/')
+def doc():
+    return redirect('http://ics2web.readthedocs.org/en/latest/#indices-and-tables')
 
 
 @app.route('/api/get/', methods=['GET'])
