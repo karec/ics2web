@@ -1,0 +1,27 @@
+#!/bin/bash
+
+NAME="ics2web" # Name of the application
+DJANGODIR=/{0}/ics2web/api # Django project directory
+SOCKFILE=/{0}/ics2web/ics2web/run/gunicorn.sock # we will communicate using this unix socket
+USER={2} # the user to run as
+GROUP={3} # the group to run as
+NUM_WORKERS={4} # how many worker processes should Gunicorn spawn
+
+echo "Starting $NAME as `whoami`"
+
+# Activate the virtual environment
+cd $DJANGODIR
+source ../ics2web/bin/activate
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start your Django Unicorn
+# Programs meant to be run under supervisor should not daemonize themselves (do not use --daemon)
+exec ../ics2web/bin/gunicorn api:app \
+--name $NAME \
+--workers $NUM_WORKERS \
+--user=$USER --group=$GROUP \
+--log-level=debug \
+--bind=unix:$SOCKFILE
