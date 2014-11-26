@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from icalendar import Calendar
 import pytz
 from helpers import attendee_to_login as to_log, format_room, set_utc, format_dt
@@ -46,7 +46,7 @@ def ical_to_dict(stream):
                 'end': format_dt(set_utc(ev.get('DTEND').dt)),
                 'start': format_dt(set_utc(ev.get('DTSTART').dt))}
                for ev in cal.walk()
-               if ev.name == "VEVENT" and (now < ev.get('DTSTART').dt <= day_end)]
+               if ev.name == "VEVENT" and (now < ev.get('DTSTART').dt <= day_end + timedelta(days=1))]
     next_ev = sorted(next_ev, key=lambda k: k['start'])
     val = {'current_events': ret, 'next_events': next_ev}
     return val
