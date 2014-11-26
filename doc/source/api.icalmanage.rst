@@ -1,6 +1,12 @@
 IcalManage package
 ==================
 
+Using the parser
+----------------
+
+Adding helper
+-------------
+
 api.icalmanage.helpers module
 -----------------------------
 
@@ -15,9 +21,4 @@ api.icalmanage.icalparser module
     :members:
     :undoc-members:
 
-Using the parser
-----------------
-
-Adding helper
--------------
 

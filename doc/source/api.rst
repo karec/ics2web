@@ -9,8 +9,8 @@ Add Routes to api
 
 
 
-api.api module
---------------
+api module
+----------
 
 .. automodule:: api.api
     :members:
