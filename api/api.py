@@ -3,10 +3,12 @@ from helpers.log import get_status_code
 from werkzeug.exceptions import BadRequest
 from icalmanage.icalparser import ical_to_dict
 from requests.exceptions import MissingSchema, InvalidURL
+from flask_cors import CORS
 import requests
 import requests_cache
 
 app = Flask(__name__)
+cors = CORS(app, ressources={r"/api/*": {"origins": "*"}})
 
 URL_BASE = "https://www.google.com/calendar/ical/"
 
