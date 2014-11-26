@@ -22,7 +22,7 @@ The `stream` parameter is stream of an ical file, you can set it with a request 
 
 Or you can simply read an local ical file
 
-If the file content canno't be read or parsed by icalendar, the function will log an error and return `False`
+If the file content cannot be read or parsed by icalendar, the function will log an error and return `False`
 
 The `ical_to_dict` function will return  a `dict` like this :
 
@@ -48,7 +48,7 @@ And the `list_of_mini_events` is a list containing basics information about inco
         "start": "2014-11-26T16:30:00"
     }
 
-In actual version of the api, the parser is directly expose in JSON and returned by the `get` api function
+In the actual version of the api, the parser is directly expose in JSON and returned by the `get` api function
 But you can use it in other place by importing it
 
 .. code-block:: python
@@ -67,7 +67,7 @@ api.icalmanage.helpers file contain a simple function for managing utc offset :
         return dt + utc_of.utcoffset(now)
 
 
-this function allow you to manually add the utc offset to the returned datetime object. Unfortunately the module don't
+This function allow you to manually add the utc offset to the returned datetime object. Unfortunately the module don't
 has any configuration file (yet), so the timezone is hardcoded (sadly), but configuration is coming soon !
 
 This function is call by default by the `ical_to_dict` function, which is the main function of the parser.

@@ -8,6 +8,12 @@ logger = logging.getLogger(__name__)
 
 
 def get_status_code(request):
+    """
+    Check the status code of the HTTP Request and log an error in the api.log file
+
+    :param request: HTTP Request
+    :return: Boolean
+    """
     if request.status_code != 200:
         msg_error = "Une erreur est survenue. La page demandée à retourné le code d'erreur {0} : {1}"
         msg_error = msg_error.format(request.status_code, request.reason)

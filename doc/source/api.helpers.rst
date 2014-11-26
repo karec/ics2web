@@ -1,8 +1,6 @@
 Api helpers package
 ===================
 
-Submodules
-----------
 
 api.helpers.log module
 ----------------------

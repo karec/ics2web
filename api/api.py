@@ -22,7 +22,7 @@ def index():
 
     return "Server is Running"
 
-@app.route('/api/get/doc/')
+@app.route('/api/doc/')
 def doc():
     """
     Redirect to the ics2web Documentation
