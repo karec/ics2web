@@ -19,13 +19,6 @@ IcalManage
 * :doc:`api.icalmanage`
 
 
-.. toctree::
-   :maxdepth: 2
-
-   test
-   othertest
-
-
 
 Indices and tables
 ==================
