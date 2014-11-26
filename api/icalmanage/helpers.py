@@ -46,6 +46,19 @@ def get_room(events, room):
     pass
 
 
+def format_dt(dt):
+    """
+    return a formated string from dt object
+    It will remove utc information
+
+    :param dt: datetime object to format
+    :type dt: datetime
+    :return: the formated string
+    :rtype: str
+    """
+    return dt.replace(tzinfo=None).isoformat()
+
+
 def format_room(room):
     """
     Format room name for display
