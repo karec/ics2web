@@ -7,7 +7,7 @@ import logging
 
 def ical_to_dict(stream):
     """
-    get all event of the current day and format them to a dict ready to be encoded in json
+    get all event of the CURRENT day and format them to a dict ready to be encoded in json
 
     :param stream: icalendar file object from get request
     :return: a dict containing formated data
