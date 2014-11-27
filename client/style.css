@@ -13,6 +13,10 @@
 	OVERRIDES
 -----------------------------------*/
 
+.grid {
+	max-width: 100%!important;
+}
+
 .alldiv {
 	width: 100%;
 }
@@ -41,6 +45,24 @@
 .bg-php {
 	background: url("http://i1058.photobucket.com/albums/t412/submitx/php-tutorials_zps9c813341.jpg") no-repeat right top;
 	/*box-shadow: 10px 10px 10px grey;*/
+	-webkit-animation: trans 1s linear;
+   -moz-animation: trans 1s linear;
+    -ms-animation: trans 1s linear;
+     -o-animation: trans 1s linear;
+        animation: trans 1s linear;
+	
+}
+
+@-webkit-keyframes trans {
+    0%  { -webkit-transform: scale(0) }
+    /*50%  { -webkit-transform: scale(1.2) }*/
+    100% { -webkit-transform: scale(1) }
+}
+
+@-moz-keyframes trans {
+    0%   { transform: scale(0) }
+    /*50%   { transform: scale(1.2) }*/
+    100% { transform: scale(1) }
 }
 
 .clock{
@@ -56,6 +78,7 @@
 	/*border-radius: 30px;*/
 	background: #748db4;
 	/*background: url("fde31_800.jpg") no-repeat right top;*/
+	background: url("http://www.downloadsource.es/upload/Screeny/The%20Matrix%20Screensaver1.png") no-repeat right top;
 
 	/*box-shadow: 10px 10px 10px grey;*/
 
