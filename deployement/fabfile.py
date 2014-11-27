@@ -54,3 +54,17 @@ def install_api_server(conf_file):
         sudo('supervisorctl reload')
     print(green("Starting application"))
     sudo('supervisorctl start ics2web')
+
+
+def update_api(conf_file):
+    config = ConfigParser.ConfigParser()
+    config.read(conf_file)
+    print(yellow("Warning : the use need rights for supervisor"))
+    print(green("Pulling last version"))
+    api_path = config.get('Global', 'api_path')
+    with cd(api_path):
+        run('git pull origin master')
+    print(green("Restarting app"))
+    app_name = config.get('Global', 'app_name')
+    sudo('supervisorctl restart {0}'.format(app_name))
+    print(green("Update done"))
