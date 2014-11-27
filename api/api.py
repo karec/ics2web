@@ -59,6 +59,13 @@ def get():
 
 @app.route('/api/get/<room>', methods=['GET'])
 def read_conf(room=None):
+    """
+    Simple method who get a ICS URL by the room ID.
+    Easiest way to access the ICS's room by putting in the URL: /api/get/<room id>
+
+    :param room: Dictionnary
+    :return: Json Dictionnary
+    """
     room_dict = dico
     selected_room = dico.get(room, None)
     if room:
