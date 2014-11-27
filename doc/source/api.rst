@@ -54,7 +54,7 @@ Example of json returned by the api :
           "name": "Test6",
           "personnes": [
             "pigot_a",
-            "valett_e", 
+            "valett_e",
             "bene_t"
           ],
           "place": "",
