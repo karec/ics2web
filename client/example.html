@@ -22,11 +22,8 @@
 	 
 <div class="col_12 alldiv">
 	<div class="col_9">
-	<div class="col_12 center clock" ng-controller="getDatetimeController">
-	<h3><i class="icon-time"></i> Heure</h3>
-	<h2>{{date}}</h2>
-	</div>
-		<div class="col_12 roombox mybg  center">
+
+		<div class="col_12 roombox mybg center">
 		<div class="roomname">
 		<h3><i class="icon-home"></i> <span > Salle 301 </span></h3>
 		</div>
@@ -43,32 +40,15 @@
 		</div>
 
 		<div class="col_12">
-			<div class="col_3 bg-anglais">
+			<div ng-controller="icsNextCtrl">
+			<div class="col_3 bg-php next" ng-repeat="val in next_eve | limitTo:4">
 			<div class="col_12 center">
-			<h4 class="clock">Anglais</h4>
-			<h5 class="clock">De 16:30 à 23:42</h5>
+			<h4 class="clock">{{val.name}}</h4>
+			<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
+			</div>
 			</div>
 			</div>
 			
-			<div class="col_3 bg-algo">
-			<div class="col_12 center">
-			<h4 class="clock">Algorithme</h4>
-			<h5 class="clock">De 16:30 à 23:42</h5>
-			</div>
-			</div>
-			
-			<div class="col_3 bg-php">
-			<div class="col_12 center">
-			<h4 class="clock">PHP</h4>
-			<h5 class="clock">De 16:30 à 23:42</h5>
-			</div>
-			</div>
-			<div class="col_3 bg-php">
-			<div class="col_12 center">
-			<h4 class="clock">PHP</h4>
-			<h5 class="clock">De 16:30 à 23:42</h5>
-			</div>
-			</div>
 
 		</div>
 	</div>
@@ -76,8 +56,7 @@
 
 	<div class="col_3">
 	<div class="col_12 center clock" ng-controller="getDatetimeController">
-	<h3><i class="icon-time"></i> Heure</h3>
-	<h2>{{date}}</h2>
+	<h3><i class="icon-time"></i> {{date}} </h3>
 	</div>
 	<div class="col_12 personne container" ng-controller="icsObjectController">
 	<h5 class="center"><i class="icon-group"> </i>Personnes concernées</h5>
