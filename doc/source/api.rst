@@ -50,18 +50,18 @@ Example of json returned by the api :
     {
       "current_events": [
         {
-          "end": "2014-11-26T19:00:00",
-          "name": "Test1",
+          "end": "2014-11-27T18:00:00",
+          "name": "Test6",
           "personnes": [
             "pigot_a",
-            "valett_e",
+            "valett_e", 
             "bene_t"
           ],
           "place": "",
-          "start": "2014-11-26T16:00:00"
+          "start": "2014-11-27T16:30:00"
         },
         {
-          "end": "2014-11-26T19:30:00",
+          "end": "2014-11-27T18:00:00",
           "name": "Test3",
           "personnes": [
             "pigot_a",
@@ -69,15 +69,47 @@ Example of json returned by the api :
             "bene_t"
           ],
           "place": "",
-          "start": "2014-11-26T15:30:00"
+          "start": "2014-11-27T16:30:00"
+        }
+      ],
+      "next_day": [
+        {
+          "end": "2014-11-28T07:30:00",
+          "name": "test_next",
+          "place": "",
+          "start": "2014-11-28T06:30:00"
         }
       ],
       "next_events": [
         {
-          "end": "2014-11-26T23:30:00",
-          "name": "Test0",
+          "end": "2014-11-27T20:30:00",
+          "name": "test7",
           "place": "",
-          "start": "2014-11-26T19:30:00"
+          "start": "2014-11-27T19:30:00"
+        },
+        {
+          "end": "2014-11-27T21:00:00",
+          "name": "test4",
+          "place": "",
+          "start": "2014-11-27T20:00:00"
+        },
+        {
+          "end": "2014-11-27T22:00:00",
+          "name": "Test5",
+          "place": "",
+          "start": "2014-11-27T21:00:00"
+        },
+        {
+          "end": "2014-11-27T23:00:00",
+          "name": "Test7",
+          "place": "",
+          "start": "2014-11-27T22:00:00"
+        },
+        {
+          "end": "2014-11-27T23:00:00",
+          "name": "Test8",
+          "place": "",
+          "start": "2014-11-27T22:00:00"
         }
       ]
     }

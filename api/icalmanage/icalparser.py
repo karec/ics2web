@@ -43,7 +43,6 @@ def ical_to_dict(stream):
             ev_start = set_utc(ev.get('DTSTART').dt)
             ev_end = set_utc(ev.get('DTEND').dt)
             if ev_end > now >= ev_start:
-                print ev_start
                 event = {'place': format_room(ev.get('LOCATION').to_ical()),
                          'name': ev.get('SUMMARY').to_ical(),
                          'personnes': to_log(ev.get('ATTENDEE')),
