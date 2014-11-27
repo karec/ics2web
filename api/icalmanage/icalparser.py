@@ -10,7 +10,8 @@ def ev_to_partial_dict(ev):
         'name': ev.get('SUMMARY').to_ical(),
         'place': format_room(ev.get('LOCATION').to_ical().replace('\\', '')),
         'end': format_dt(set_utc(ev.get('DTEND').dt)),
-        'start': format_dt(set_utc(ev.get('DTSTART').dt))
+        'start': format_dt(set_utc(ev.get('DTSTART').dt)),
+        'desc': ev.get('DESCRIPTION').to_ical()
     }
 
 
