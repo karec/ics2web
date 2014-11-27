@@ -4,9 +4,9 @@ from werkzeug.exceptions import BadRequest
 from icalmanage.icalparser import ical_to_dict
 from requests.exceptions import MissingSchema, InvalidURL
 from flask_cors import CORS
+from helpers.room_list import room_dict as dico
 import requests
 import requests_cache
-from helpers.room_list import room_dict as dico
 
 
 app = Flask(__name__)
@@ -57,12 +57,11 @@ def get():
         raise BadRequest("HTTP Exception")
 
 
-@app.route('/api/get/', methods=['GET'])
-def read_conf():
+@app.route('/api/get/<room>', methods=['GET'])
+def read_conf(room=None):
     room_dict = dico
-    room = request.args.get('room', "")
     selected_room = dico.get(room, None)
-    if not room:
+    if room:
         try:
             r = requests.get(selected_room, stream=True)
         except MissingSchema:
