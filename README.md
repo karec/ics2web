@@ -1,7 +1,7 @@
 ics2web
 =======
 
-![doc](https://readthedocs.org/projects/ics2web/badge/?version=latest)
+[![doc](https://readthedocs.org/projects/ics2web/badge/?version=latest)](http://ics2web.readthedocs.org/en/latest/index.html)
 
 a small api for working with ical file
 
