@@ -4,8 +4,10 @@ from werkzeug.exceptions import BadRequest
 from icalmanage.icalparser import ical_to_dict
 from requests.exceptions import MissingSchema, InvalidURL
 from flask_cors import CORS
+from helpers.room_list import room_dict as dico
 import requests
 import requests_cache
+
 
 app = Flask(__name__)
 cors = CORS(app, ressources={r"/api/*": {"origins": "*"}})
@@ -53,6 +55,33 @@ def get():
         return jsonify(event)
     else:
         raise BadRequest("HTTP Exception")
+
+
+@app.route('/api/get/<room>', methods=['GET'])
+def read_conf(room=None):
+    """
+    Simple method who get a ICS URL by the room ID.
+    Easiest way to access the ICS's room by putting in the URL: /api/get/<room id>
+
+    :param room: Dictionnary
+    :return: Json Dictionnary
+    """
+    room_dict = dico
+    selected_room = dico.get(room, None)
+    if room:
+        try:
+            r = requests.get(selected_room, stream=True)
+        except MissingSchema:
+            raise BadRequest("Bad URL Provided")
+        except InvalidURL:
+            raise BadRequest("Bad URL Provided")
+        if get_status_code(r):
+            event = ical_to_dict(r)
+        if not event:
+            raise BadRequest("Bad ICS Provided")
+        return jsonify(event)
+    else:
+        raise BadRequest("No Room Found, check your room id")
 
 
 if __name__ == '__main__':
