@@ -24,23 +24,23 @@
 
 .bg-anglais {
 	background: url("http://wizztiti.com/wp-content/uploads/2013/02/drapeau-anglais.jpg") no-repeat right top;
-	box-shadow: 10px 10px 10px grey;
+	/*box-shadow: 10px 10px 10px grey;*/
 }
 
 .bg-math {
 	background: url("fde31_800.jpg") no-repeat right top;
-	box-shadow: 10px 10px 10px grey;
+	/*box-shadow: 10px 10px 10px grey;*/
 }
 
 
 .bg-algo {
 	background: url("http://www.downloadsource.es/upload/Screeny/The%20Matrix%20Screensaver1.png") no-repeat right top;
-	box-shadow: 10px 10px 10px grey;
+	/*box-shadow: 10px 10px 10px grey;*/
 }
 
 .bg-php {
 	background: url("http://i1058.photobucket.com/albums/t412/submitx/php-tutorials_zps9c813341.jpg") no-repeat right top;
-	box-shadow: 10px 10px 10px grey;
+	/*box-shadow: 10px 10px 10px grey;*/
 }
 
 .clock{
@@ -57,7 +57,7 @@
 	background: #748db4;
 	/*background: url("fde31_800.jpg") no-repeat right top;*/
 
-	box-shadow: 10px 10px 10px grey;
+	/*box-shadow: 10px 10px 10px grey;*/
 
 	
 }
@@ -84,7 +84,7 @@
 }
 
 .personne {
-	border-radius: 30px;
+	
 	/*background: #748db4;*/
 	/*background: url("fde31_800.jpg") no-repeat right top;*/
 	background: rgba(51, 51, 51,0.5); /* Old browsers */
@@ -96,18 +96,21 @@
     color: white;
     height: 250px;
     padding-left: : 5px;
-    box-shadow: 10px 10px 10px grey;
+    /*box-shadow: 10px 10px 10px grey;*/
     
     
     
 }
 /*Annimation personne vertical*/
 .marquee {
-    top: 0;
+    top: 250px;
     position: relative;
     box-sizing: border-box;
-    webkit-animation: marquee 20s linear infinite;
-    animation: marquee 20s linear infinite;
+    -webkit-animation: marquee 5s linear 2s infinite;
+   -moz-animation: marquee 5s linear infinite;
+    -ms-animation: marquee 5s linear infinite;
+     -o-animation: marquee 5s linear infinite;
+        animation: marquee 5s linear infinite;
 }
 
 .container {
@@ -122,11 +125,27 @@
 
 /* Make it move! */
 @-webkit-keyframes marquee {
+    0%  { top:   250px }
+    100% { top: -255px }
+}
+
+@-moz-keyframes marquee {
+    0%   { top:   100% }
+    100% { top: -100% }
+}
+
+@-ms-keyframes marquee {
     0%   { top:   5% }
     100% { top: -100% }
 }
-@keyframes marquee {
+
+@-o-keyframes marquee {
     0%   { top:   5% }
+    100% { top: -100% }
+}
+
+@keyframes marquee {
+    0%   { top:   100% }
     100% { top: -100% }
 }
 
@@ -165,6 +184,11 @@ font-family: "Arimo", arial, verdana, sans-serif;
 /*---------------------------------
 	LAYOUT
 -----------------------------------*/
+html {
+	max-height: 100%;
+
+}
+
 body{
 margin:0;
 padding:0 0 0 0;
@@ -172,6 +196,7 @@ color:#000;
 background:#efefef url(css/img/gray_jean.png);
 font:normal 0.9em/150% 'Arimo', arial, verdana, sans-serif;
 text-shadow: 0 0 1px transparent; /* google font pixelation fix */
+
 }
 
 #wrap{
