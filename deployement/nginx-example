@@ -1,8 +1,8 @@
-upstream ics_server {
-	 server unix:/{0}/run/gunicorn.sock fail_timeout=0;
-}
+upstream ics_server {{
+	 server unix:{0}/ics2web/run/gunicorn.sock fail_timeout=0;
+}}
 
-server {
+server {{
        listen 80;
 
        server_name {3};
@@ -12,14 +12,14 @@ server {
        access_log {1};
        error_log {2};
 
-       location / {
+       location / {{
        		proxy_set_header X-Formwarded-For $proxy_add_x_forwarded_for;
 			proxy_set_header Host $http_host;
 			proxy_redirect off;
 
-			if (!-f $request_filename) {
+			if (!-f $request_filename) {{
 		   		proxy_pass http://ics_server;
 		   		break;
-			}
-       }
-}
+			}}
+       }}
+}}
