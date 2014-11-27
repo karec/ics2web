@@ -6,6 +6,8 @@ from requests.exceptions import MissingSchema, InvalidURL
 from flask_cors import CORS
 import requests
 import requests_cache
+from helpers.room_list import room_dict as dico
+
 
 app = Flask(__name__)
 cors = CORS(app, ressources={r"/api/*": {"origins": "*"}})
@@ -53,6 +55,27 @@ def get():
         return jsonify(event)
     else:
         raise BadRequest("HTTP Exception")
+
+
+@app.route('/api/get/', methods=['GET'])
+def read_conf():
+    room_dict = dico
+    room = request.args.get('room', "")
+    selected_room = dico.get(room, None)
+    if not room:
+        try:
+            r = requests.get(selected_room, stream=True)
+        except MissingSchema:
+            raise BadRequest("Bad URL Provided")
+        except InvalidURL:
+            raise BadRequest("Bad URL Provided")
+        if get_status_code(r):
+            event = ical_to_dict(r)
+        if not event:
+            raise BadRequest("Bad ICS Provided")
+        return jsonify(event)
+    else:
+        raise BadRequest("No Room Found, check your room id")
 
 
 if __name__ == '__main__':
