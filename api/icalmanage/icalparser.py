@@ -47,6 +47,7 @@ def ical_to_dict(stream):
                          'name': ev.get('SUMMARY').to_ical(),
                          'personnes': to_log(ev.get('ATTENDEE')),
                          'start': format_dt(ev_start),
+                         'desc': ev.get('DESCRIPTION').to_ical(),
                          'end': format_dt(ev_end)}
                 ret.append(event)
     next_ev = [ev_to_partial_dict(ev)
