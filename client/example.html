@@ -24,12 +24,12 @@
 	<div class="col_9">
 
 		<div class="col_12 roombox mybg center">
-		<div class="roomname">
+		<div class="roomname {{val.name}}">
 		<h3><i class="icon-home"></i> <span > Salle 301 </span></h3>
 		</div>
 		
 		<div ng-controller="icsCurrentCtrl" class="roomname">
-		<h1>{{cur_eve.name}}</h1>
+		<h1>{{cur_eve.desc}}</h1>
 		</div>
 		<div ng-controller="icsCurrentCtrl" class="roomname">
 		<h2>De {{cur_eve.start | date:'HH:mm:ss'}} à {{cur_eve.end | date:'HH:mm:ss'}}</h2>
@@ -41,9 +41,9 @@
 
 		<div class="col_12">
 			<div ng-controller="icsNextCtrl">
-			<div class="col_3 bg-php next" ng-repeat="val in next_eve | limitTo:4">
+			<div class="col_3 next {{val.name}} bg-php" ng-repeat="val in next_eve | limitTo: lentab " >
 			<div class="col_12 center">
-			<h4 class="clock">{{val.name}}</h4>
+			<h4 class="clock">{{val.desc}}</h4>
 			<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
 			</div>
 			</div>
@@ -64,7 +64,7 @@
 			<div class="container">
 
 			<ul class="icons marquee" ng-repeat="val in ics.current_events">
-			<h4>{{val.name}}</h4>
+			<h4>{{val.desc}}</h4>
 			<li ng-repeat="vals in val.personnes"><i class="icon-user"></i>{{vals}}</li>
 	 		
 			</ul>
@@ -77,9 +77,9 @@
 	<hr />
 	
 	<div ng-controller="icsObjectController">
-	<div class="col_3 bg-anglais" ng-repeat="val in ics.next_events">
+	<div class="col_3 bg-anglais {{val.name}}" ng-repeat="val in ics.next_events">
 	<div class="col_12 center" >
-	<h4 class="clock">{{val.name}}</h4>
+	<h4 class="clock">{{val.desc}}</h4>
 	<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
 	</div>
 	</div>
