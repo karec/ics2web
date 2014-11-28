@@ -4,7 +4,7 @@ from werkzeug.exceptions import BadRequest
 from icalmanage.icalparser import ical_to_dict
 from requests.exceptions import MissingSchema, InvalidURL
 from flask_cors import CORS
-from helpers.room_list import room_dict as dico
+from helpers.room_list import ROOMS
 import requests
 import requests_cache
 
@@ -13,6 +13,7 @@ app = Flask(__name__)
 cors = CORS(app, ressources={r"/api/*": {"origins": "*"}})
 
 requests_cache.install_cache('/tmp/ics-api-cache', expire_after=600)
+
 
 @app.route('/')
 def index():
@@ -24,7 +25,8 @@ def index():
 
     return "Server is Running"
 
-@app.route('/api/doc/')
+
+@app.route('/api/doc/', methods=['GET'])
 def doc():
     """
     Redirect to the ics2web Documentation
@@ -37,9 +39,9 @@ def doc():
 @app.route('/api/get/', methods=['GET'])
 def get():
     """
-    Simple method who take a ICS URL and and return a JSON Dictionnary. Also handle some error.
+    Simple method who take a ICS URL and and return a JSON object. Also handle some error.
 
-    :return: Json Dictionnary
+    :return: A json object of the events
     """
     get_return_request = request.args.get('url', "")
     try:
@@ -63,11 +65,11 @@ def read_conf(room=None):
     Simple method who get a ICS URL by the room ID.
     Easiest way to access the ICS's room by putting in the URL: /api/get/<room id>
 
-    :param room: Dictionnary
-    :return: Json Dictionnary
+    :param room: string representing the room
+    :return: Json dict of events for the room
     """
-    room_dict = dico
-    selected_room = dico.get(room, None)
+    event = None
+    selected_room = ROOMS.get(room, None)
     if room:
         try:
             r = requests.get(selected_room, stream=True)

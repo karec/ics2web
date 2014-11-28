@@ -20,7 +20,7 @@ def attendee_to_login(attendee):
 
 def set_utc(dt):
     """
-    This function is used for correct a bug in icalendar datetime from google agendat
+    This function is used for correct a bug in icalendar datetime from google agenda
     It will add the utc offset of the localised current datetime to the dt param and return it
 
     :param dt: the datetime to update
