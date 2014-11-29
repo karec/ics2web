@@ -1,13 +1,20 @@
-function icsObjectController($scope, $http) {
-	$http.get("http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/ical/bene_t%40etna-alternance.net/private-ebd8846b2fae995953df0e5494323e82/basic.ics")
+var app = angular.module('icstoweb', []);
+
+
+var ics = "https://www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.ics"
+
+
+
+app.controller('icsObjectController', function($scope, $http) {
+	$http.get(ics)
 	.success(function(response) {$scope.ics = response;
 				
 	});
 		
-	}
+	});
 
-	function icsCurrentCtrl($scope, $http, $timeout) {
-		$http.get("http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/ical/bene_t%40etna-alternance.net/private-ebd8846b2fae995953df0e5494323e82/basic.ics")
+app.controller('icsCurrentCtrl', function($scope, $http, $timeout) {
+		$http.get(ics)
 		.success(function(response) {
 
 			//console.log(response.current_events.length);
@@ -31,51 +38,41 @@ function icsObjectController($scope, $http) {
 			}
 	
 		});
-	}
+	});
 
 
-	function icsNextCtrl($scope, $http, $timeout) {
-		$http.get("http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/ical/bene_t%40etna-alternance.net/private-ebd8846b2fae995953df0e5494323e82/basic.ics")
+	 app.controller('icsNextCtrl', function($scope, $http, $timeout) {
+		$http.get(ics)
 		.success(function(response) {
-
-			//console.log(response.current_events.length);
-
 			var len = response.next_events.length -1;
 			var tmp = len;
 			var tab = [];
-			
-
-			
 
 			var myNext = function() {
-				for (var i = 0; i < len; i++) {
+
+				while (len > 0){
+					for (var i = 0; i < 4; i++) {
 					tab[i] = response.next_events[i];
-					//var name = response.next_events[i].name;
+	
 					
-					//console.log(name);
-					//elem[i].className += "toto";
-					//console.log(elem[i]);
-					//$timeout(myNext, 1000);
-					
-					
-				};
+					};
+
+				}
+				
+				//$timeout(myNext, 1000);
 			}
 			$timeout(myNext, 100);
 			$scope.next_eve = tab;
 			var lentab = response.next_events.length -1;
 			$scope.lentab = lentab;
-			console.log($scope.lentab);
-			
-			
-	
 		});
-	}
+	});
 
 
 
 
 
-function getDatetimeController($scope,$timeout) {
+ app.controller('getDatetimeController', function($scope,$timeout) {
 	var  myHour = function() {
 	var d = new Date();
 	var t = d.toLocaleTimeString();
@@ -84,5 +81,11 @@ function getDatetimeController($scope,$timeout) {
 	}
 
 	$timeout(myHour, 500);
-};
+});
+
+app.filter('slice', function() {
+  return function(arr, start, end) {
+    return arr.slice(start, end);
+  };
+});
 
