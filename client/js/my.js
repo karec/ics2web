@@ -1,7 +1,7 @@
 var app = angular.module('icstoweb', []);
 
 
-var ics = "https://www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.ics"
+var ics = "http://ics.evalette.net/api/get?url=www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.ics"
 
 
 
