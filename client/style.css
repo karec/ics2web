@@ -15,7 +15,7 @@
 
 .grid {
 	max-width: 100%!important;
-	max-width: 100%!important;
+	max-width: 100%!important
 }
 
 .alldiv {
@@ -145,11 +145,11 @@ div.Test6 {
     top: 250px;
     position: relative;
     box-sizing: border-box;
-    -webkit-animation: marquee 5s linear 2s infinite;
-   -moz-animation: marquee 5s linear infinite;
-    -ms-animation: marquee 5s linear infinite;
-     -o-animation: marquee 5s linear infinite;
-        animation: marquee 5s linear infinite;
+    -webkit-animation: marquee 7s linear infinite;
+   -moz-animation: marquee 7s linear infinite;
+    -ms-animation: marquee 7s linear infinite;
+     -o-animation: marquee 7s linear infinite;
+        animation: marquee 7s linear infinite;
 }
 
 .container {
