@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="col_12">
-			<div ng-controller="icsNextCtrl">
+			<div ng-controller="icsNextCtrl" ng-init="init()">
 			<div class="col_3 next {{val.name}} bg-php" ng-repeat="val in next_eve" >
 			<div class="col_12 center">
 			<h4 class="clock">{{val.desc}}</h4>
