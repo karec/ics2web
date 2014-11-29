@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>HTML KickStart Elements</title>
+<title>ICS to Web API Angular UI</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="" />
@@ -12,7 +12,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 <script type="text/javascript" src="js/my.js"></script>
 </head>
-<body ng-app>
+<body ng-app="icstoweb">
 
 
 
@@ -23,15 +23,15 @@
 <div class="col_12 alldiv">
 	<div class="col_9">
 
-		<div class="col_12 roombox mybg center">
-		<div class="roomname">
+		<div class="col_12 roombox mybg center" ng-controller="icsCurrentCtrl">
+		<div class="roomname {{cur_eve.name}}">
 		<h3><i class="icon-home"></i> <span > Salle 301 </span></h3>
 		</div>
 		
-		<div ng-controller="icsCurrentCtrl" class="roomname">
-		<h1>{{cur_eve.name}}</h1>
+		<div class="roomname">
+		<h1>{{cur_eve.desc}}</h1>
 		</div>
-		<div ng-controller="icsCurrentCtrl" class="roomname">
+		<div class="roomname">
 		<h2>De {{cur_eve.start | date:'HH:mm:ss'}} à {{cur_eve.end | date:'HH:mm:ss'}}</h2>
 		
 		</div>
@@ -41,9 +41,9 @@
 
 		<div class="col_12">
 			<div ng-controller="icsNextCtrl">
-			<div class="col_3 bg-php next" ng-repeat="val in next_eve | limitTo:4">
+			<div class="col_3 next {{val.name}} bg-php" ng-repeat="val in next_eve" >
 			<div class="col_12 center">
-			<h4 class="clock">{{val.name}}</h4>
+			<h4 class="clock">{{val.desc}}</h4>
 			<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
 			</div>
 			</div>
@@ -64,7 +64,7 @@
 			<div class="container">
 
 			<ul class="icons marquee" ng-repeat="val in ics.current_events">
-			<h4>{{val.name}}</h4>
+			<h4>{{val.desc}}</h4>
 			<li ng-repeat="vals in val.personnes"><i class="icon-user"></i>{{vals}}</li>
 	 		
 			</ul>
@@ -77,9 +77,9 @@
 	<hr />
 	
 	<div ng-controller="icsObjectController">
-	<div class="col_3 bg-anglais" ng-repeat="val in ics.next_events">
+	<div class="col_3 bg-anglais {{val.name}}" ng-repeat="val in ics.next_events">
 	<div class="col_12 center" >
-	<h4 class="clock">{{val.name}}</h4>
+	<h4 class="clock">{{val.desc}}</h4>
 	<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
 	</div>
 	</div>
@@ -91,8 +91,8 @@
 
 <!-- ===================================== START FOOTER ===================================== -->
 <div class="clear"></div>
-<div id="footer">
+<!-- <div id="footer">
 &copy; Copyright 2011–2012 All Rights Reserved. This website was built with <a href="http://www.99lime.com">HTML KickStart</a>
-</div>
+</div> -->
 
 </body></html>

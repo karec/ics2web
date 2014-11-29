@@ -15,6 +15,7 @@
 
 .grid {
 	max-width: 100%!important;
+	max-width: 100%!important;
 }
 
 .alldiv {
@@ -26,23 +27,38 @@
 	
 }
 
-.bg-anglais {
+.Anglais {
 	background: url("http://wizztiti.com/wp-content/uploads/2013/02/drapeau-anglais.jpg") no-repeat right top;
 	/*box-shadow: 10px 10px 10px grey;*/
+	background-size: cover;
+	overflow: hidden;
 }
 
-.bg-math {
+.Mathematiques {
 	background: url("fde31_800.jpg") no-repeat right top;
 	/*box-shadow: 10px 10px 10px grey;*/
+	background-size: cover;
 }
 
 
-.bg-algo {
+.INT, . {
 	background: url("http://www.downloadsource.es/upload/Screeny/The%20Matrix%20Screensaver1.png") no-repeat right top;
 	/*box-shadow: 10px 10px 10px grey;*/
+	background-size: cover;
 }
 
-.bg-php {
+div.Test6 {
+	background: url("http://www.downloadsource.es/upload/Screeny/The%20Matrix%20Screensaver1.png") no-repeat right top;
+	/*box-shadow: 10px 10px 10px grey;*/
+	-webkit-animation: trans 1s linear;
+   -moz-animation: trans 1s linear;
+    -ms-animation: trans 1s linear;
+     -o-animation: trans 1s linear;
+        animation: trans 1s linear;
+
+}
+
+.PHP {
 	background: url("http://i1058.photobucket.com/albums/t412/submitx/php-tutorials_zps9c813341.jpg") no-repeat right top;
 	/*box-shadow: 10px 10px 10px grey;*/
 	-webkit-animation: trans 1s linear;
@@ -79,7 +95,7 @@
 	background: #748db4;
 	/*background: url("fde31_800.jpg") no-repeat right top;*/
 	background: url("http://www.downloadsource.es/upload/Screeny/The%20Matrix%20Screensaver1.png") no-repeat right top;
-
+	background-size: cover;
 	/*box-shadow: 10px 10px 10px grey;*/
 
 	

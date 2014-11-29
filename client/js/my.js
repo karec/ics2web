@@ -1,19 +1,26 @@
-function icsObjectController($scope, $http) {
-	$http.get("http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/ical/bene_t%40etna-alternance.net/private-ebd8846b2fae995953df0e5494323e82/basic.ics")
+var app = angular.module('icstoweb', []);
+
+
+var ics = "http://ics.evalette.net/api/get?url=www.google.com/calendar/ical/valett_e%40etna-alternance.net/private-dcbad4791bccb7846db0fdd38f9498f8/basic.ics"
+
+
+
+app.controller('icsObjectController', function($scope, $http) {
+	$http.get(ics)
 	.success(function(response) {$scope.ics = response;
 				
 	});
 		
-	}
+	});
 
-	function icsCurrentCtrl($scope, $http, $timeout) {
-		$http.get("http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/ical/bene_t%40etna-alternance.net/private-ebd8846b2fae995953df0e5494323e82/basic.ics")
+app.controller('icsCurrentCtrl', function($scope, $http, $timeout) {
+		$http.get(ics)
 		.success(function(response) {
 
 			//console.log(response.current_events.length);
 			var len = response.current_events.length -1;
 			var tmp = len;
-			if (response.current_events.length > 1) {
+			if (response.current_events.length >= 2) {
 				// console.log("test");
 				var myCurrent = function(){
 					// console.log(len);
@@ -26,85 +33,46 @@ function icsObjectController($scope, $http) {
 				}
 				$timeout(myCurrent, 100);
 			}else {
-				$scope.cur_eve = response.current_events;
-			};
+				$scope.cur_eve = response.current_events[0];
+				
+			}
 	
 		});
-	}
+	});
 
-	function icsPersoCtrl($scope, $http, $timeout) {
-		$http.get("http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/ical/bene_t%40etna-alternance.net/private-ebd8846b2fae995953df0e5494323e82/basic.ics")
+
+	 app.controller('icsNextCtrl', function($scope, $http, $timeout) {
+		$http.get(ics)
 		.success(function(response) {
-			var len = response.current_events.length -1;
-			var tmp = len;
-			if (response.current_events.length > 1) {
-				// console.log("test");
-				var myCurrent = function(){
-					// console.log(len);
-					// console.log(tmp);
-					if (tmp < 0) {tmp = len};
-					$scope.cur_eve = response.current_events[tmp --];
-					// console.log(tmp);
-				
-					$timeout(myCurrent, 5000);
-				}
-				$timeout(myCurrent, 100);
-			} else {
-				$scope.cur_eve = response.current_events;
-			};
-
-				
-		});
-		
-	}
-
-	function icsNextCtrl($scope, $http, $timeout) {
-		$http.get("http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/ical/bene_t%40etna-alternance.net/private-ebd8846b2fae995953df0e5494323e82/basic.ics")
-		.success(function(response) {
-
-			//console.log(response.current_events.length);
 			var len = response.next_events.length -1;
 			var tmp = len;
 			var tab = [];
-			//var name = response.next_events.name;
-			var elem = document.getElementsByClassName("next");
 
 			var myNext = function() {
-				for (var i = 0; i < len; i++) {
-					tab[i] = response.next_events[i]
-					var name = response.next_events[i].name;
-					console.log(name);
-					elem[i].className += "toto";
-					$timeout(myNext, 100);
+
+				while (len > 0){
+					for (var i = 0; i < 4; i++) {
+					tab[i] = response.next_events[i];
+	
 					
-				};
+					};
+
+				}
+				
+				//$timeout(myNext, 1000);
 			}
 			$timeout(myNext, 100);
 			$scope.next_eve = tab;
-
-			
-			// if (response.next_events.length > 1) {
-			// 	// console.log(response.next_events);
-			// 	var myNext = function(){
-			// 		console.log(len);
-			// 		console.log(tmp);
-			// 		if (tmp < 0) {tmp = len};
-			// 		$scope.next_eve = response.next_events[tmp --];
-			// 		console.log($scope.next_eve);
-				
-			// 		$timeout(myNext, 1000);
-			// 	}
-			// 	$timeout(myNext, 100);
-			// };
-	
+			var lentab = response.next_events.length -1;
+			$scope.lentab = lentab;
 		});
-	}
+	});
 
 
 
 
 
-function getDatetimeController($scope,$timeout) {
+ app.controller('getDatetimeController', function($scope,$timeout) {
 	var  myHour = function() {
 	var d = new Date();
 	var t = d.toLocaleTimeString();
@@ -113,5 +81,11 @@ function getDatetimeController($scope,$timeout) {
 	}
 
 	$timeout(myHour, 500);
-};
+});
+
+app.filter('slice', function() {
+  return function(arr, start, end) {
+    return arr.slice(start, end);
+  };
+});
 
