@@ -79,7 +79,8 @@
 	<div ng-controller="icsObjectController">
 	<div class="col_3 bg-anglais {{val.name}}" ng-repeat="val in ics.next_events">
 	<div class="col_12 center" >
-	<h4 class="clock">{{val.desc}}</h4>
+	<h4 class="clock" data-ng-show="val.decs">{{val.desc}}</h4>
+	<h4 class="clock" data-ng-if="!val.decs">{{val.name}}</h4>
 	<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
 	</div>
 	</div>
