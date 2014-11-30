@@ -78,7 +78,7 @@
 	<div class="col_12"> <h4 class="prog-title center">Programe de demain</h4></div>
 	
 	<div ng-controller="icsObjectController">
-		<div class="col_3 next {{val.name}} mybg" ng-repeat="val in ics.next_events">
+		<div class="col_3 next {{val.name}} mybg" ng-repeat="val in ics.next_day | limitTo: 4">
 			<div class="col_12 center" >
 			<h4 class="clock" ng-if="val.desc">{{val.desc}}</h4>
 			<h4 class="clock" ng-if="!val.desc">{{val.name}}</h4>
