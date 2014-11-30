@@ -37,7 +37,7 @@ def check_event_next_day(ev, day_end):
     """
     if ev.name != "VEVENT":
         return False
-    ev_start = ev.get('DTSTART').dt
+    ev_start = set_utc(ev.get('DTSTART').dt)
     if not isinstance(ev_start, datetime):
         ev_start = datetime.combine(ev_start, datetime.min.time()).replace(tzinfo=pytz.UTC)
     return day_end < ev_start <= day_end + timedelta(days=1)
@@ -53,7 +53,7 @@ def check_event_current(ev, day_end):
     """
     if ev.name != "VEVENT":
         return False
-    ev_start = ev.get('DTSTART').dt
+    ev_start = set_utc(ev.get('DTSTART').dt)
     if not isinstance(ev_start, datetime):
         ev_start = datetime.combine(ev_start, datetime.min.time()).replace(tzinfo=pytz.UTC)
     now = set_utc(datetime.now(tz=pytz.UTC))
