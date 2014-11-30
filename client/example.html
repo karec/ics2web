@@ -12,7 +12,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 <script type="text/javascript" src="js/my.js"></script>
 </head>
-<body ng-app="icstoweb">
+<body ng-app="icstoweb" ng-controller="planning" ng-init="init()">
 
 
 
@@ -23,7 +23,7 @@
 <div class="col_12 alldiv">
 	<div class="col_9">
 
-			<div class="col_12 roombox {{cur_eve.name}} center" ng-controller="icsCurrentCtrl">
+			<div class="col_12 roombox {{cur_eve.name}} center">
 				<div class="roomname">
 				<h3><i class="icon-home"></i> <span > Salle 301 </span></h3>
 				</div>
@@ -40,7 +40,7 @@
 			
 			<div class="col_12">
 			<h4 class="prog-title  center">Programe de la journée</h4>
-				<div ng-controller="icsNextCtrl" ng-init="init()">
+				<div>
 				<div class="col_3 next {{val.name}} mybg" ng-repeat="val in next_eve" >
 				<div class="col_12 center">
 				<h4 class="clock" ng-if="val.desc">{{val.desc}}</h4>
@@ -56,10 +56,10 @@
 
 	
 	<div class="col_3">
-		<div class="col_12 center clock" ng-controller="getDatetimeController">
+		<div class="col_12 center clock">
 		<h3><i class="icon-time"></i> {{date}} </h3>
 		</div>
-		<div class="col_12 personne container" ng-controller="icsObjectController">
+		<div class="col_12 personne container">
 			<h3 class="center"><i class="icon-group"> </i>Personnes concernées</h3>
 		
 				<div class="container">
@@ -77,7 +77,7 @@
 	
 	<div class="col_12"> <h4 class="prog-title center">Programe de demain</h4></div>
 	
-	<div ng-controller="icsObjectController">
+	<div>
 		<div class="col_3 next {{val.name}} mybg" ng-repeat="val in ics.next_day | limitTo: 4">
 			<div class="col_12 center" >
 			<h4 class="clock" ng-if="val.desc">{{val.desc}}</h4>
