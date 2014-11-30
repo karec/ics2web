@@ -68,14 +68,14 @@ app.controller('icsNextCtrl', function($scope, $http, $timeout, $interval) {
 				if (st + 4  > events.length - 1)
 					$scope.next_eve = events.slice(st);
 				else
-					$scope.next_eve = events.slice(st, 4);
+					$scope.next_eve = events.slice(st, + 4);
 				st += 4;
 			}, 4000);
 		});
 
 
 	};
-	$interval($scope.init, 50000);
+	$interval($scope.init, 120000);
 });
 
 
