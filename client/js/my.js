@@ -6,16 +6,21 @@ var ics = "http://ics.evalette.net/api/get/?url=https://www.google.com/calendar/
 
 
 
-app.controller('icsObjectController', function($scope, $http) {
-	$http.get(ics)
+app.controller('icsObjectController', function($scope, $http, $timeout) {
+	var call = function (){$http.get(ics)
 		.success(function(response) {$scope.ics = response;
 
 		});
 
+		$timeout(call, 50000)
+	}
+
+	$timeout(call, 1000)
+
 });
 
-app.controller('icsCurrentCtrl', function($scope, $http, $timeout) {
-	$http.get(ics)
+app.controller('icsCurrentCtrl', function($scope, $http, $timeout, $interval) {
+	var call = function () {$http.get(ics)
 		.success(function(response) {
 
 			//console.log(response.current_events.length);
@@ -37,8 +42,13 @@ app.controller('icsCurrentCtrl', function($scope, $http, $timeout) {
 				$scope.cur_eve = response.current_events[0];
 
 			}
-
+			//$timeout(call, 50000);
 		});
+		
+	}
+	call();
+	$interval(call, 50000);
+
 });
 
 
@@ -65,6 +75,7 @@ app.controller('icsNextCtrl', function($scope, $http, $timeout, $interval) {
 
 
 	};
+	$interval($scope.init, 50000);
 });
 
 

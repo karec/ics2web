@@ -16,74 +16,75 @@
 
 
 
-<div class="grid alldiv">
+<div class="grid alldiv" ng-cloak>
 	
 <!-- ===================================== END HEADER ===================================== -->
 	 
 <div class="col_12 alldiv">
 	<div class="col_9">
 
-		<div class="col_12 roombox mybg center" ng-controller="icsCurrentCtrl">
-		<div class="roomname {{cur_eve.name}}">
-		<h3><i class="icon-home"></i> <span > Salle 301 </span></h3>
-		</div>
-		
-		<div class="roomname">
-		<h1>{{cur_eve.desc}}</h1>
-		</div>
-		<div class="roomname">
-		<h2>De {{cur_eve.start | date:'HH:mm:ss'}} à {{cur_eve.end | date:'HH:mm:ss'}}</h2>
-		
-		</div>
+			<div class="col_12 roombox {{cur_eve.name}} center" ng-controller="icsCurrentCtrl">
+				<div class="roomname">
+				<h3><i class="icon-home"></i> <span > Salle 301 </span></h3>
+				</div>
+				
+				<div class="roomname">
+					<h1 ng-if="cur_eve.desc">{{cur_eve.desc}}</h1>
+					<h1 ng-if="!cur_eve.desc">{{cur_eve.name}}</h1>
+				</div>
+				<div class="roomname">
+					<h2>De {{cur_eve.start | date:'HH:mm:ss'}} à {{cur_eve.end | date:'HH:mm:ss'}}</h2>
+				</div>
 
-
-		</div>
-
-		<div class="col_12">
-			<div ng-controller="icsNextCtrl" ng-init="init()">
-			<div class="col_3 next {{val.name}} bg-php" ng-repeat="val in next_eve" >
-			<div class="col_12 center">
-			<h4 class="clock">{{val.desc}}</h4>
-			<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
-			</div>
-			</div>
 			</div>
 			
+			<div class="col_12">
+			<h4 class="prog-title  center">Programe de la journée</h4>
+				<div ng-controller="icsNextCtrl" ng-init="init()">
+				<div class="col_3 next {{val.name}} mybg" ng-repeat="val in next_eve" >
+				<div class="col_12 center">
+				<h4 class="clock" ng-if="val.desc">{{val.desc}}</h4>
+				<h4 class="clock" ng-if="!val.desc">{{val.name}}</h4>
+				<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
+				</div>
+				</div>
+				</div>
 
-		</div>
+			</div>
+
 	</div>
 
-
+	
 	<div class="col_3">
-	<div class="col_12 center clock" ng-controller="getDatetimeController">
-	<h3><i class="icon-time"></i> {{date}} </h3>
-	</div>
-	<div class="col_12 personne container" ng-controller="icsObjectController">
-	<h5 class="center"><i class="icon-group"> </i>Personnes concernées</h5>
-	
-			<div class="container">
+		<div class="col_12 center clock" ng-controller="getDatetimeController">
+		<h3><i class="icon-time"></i> {{date}} </h3>
+		</div>
+		<div class="col_12 personne container" ng-controller="icsObjectController">
+			<h3 class="center"><i class="icon-group"> </i>Personnes concernées</h3>
+		
+				<div class="container">
 
-			<ul class="icons marquee" ng-repeat="val in ics.current_events">
-			<h4>{{val.desc}}</h4>
-			<li ng-repeat="vals in val.personnes"><i class="icon-user"></i>{{vals}}</li>
-	 		
-			</ul>
-			</div>	
-	</div>
+				<ul class="icons marquee" ng-repeat="val in ics.current_events">
+				<h4>{{val.desc}}</h4>
+				<li ng-repeat="vals in val.personnes"><i class="icon-user"></i>{{vals}}</li>
+		 		
+				</ul>
+				</div>	
+		</div>
 	
 	</div>
 
 	
-	<hr />
+	<div class="col_12"> <h4 class="prog-title center">Programe de demain</h4></div>
 	
 	<div ng-controller="icsObjectController">
-	<div class="col_3 bg-anglais {{val.name}}" ng-repeat="val in ics.next_events">
-	<div class="col_12 center" >
-	<h4 class="clock" data-ng-show="val.decs">{{val.desc}}</h4>
-	<h4 class="clock" data-ng-if="!val.decs">{{val.name}}</h4>
-	<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
-	</div>
-	</div>
+		<div class="col_3 next {{val.name}} mybg" ng-repeat="val in ics.next_events">
+			<div class="col_12 center" >
+			<h4 class="clock" ng-if="val.desc">{{val.desc}}</h4>
+			<h4 class="clock" ng-if="!val.desc">{{val.name}}</h4>
+			<h5 class="clock">De {{val.start | date:'HH:mm:ss'}} à {{val.end | date:'HH:mm:ss'}}</h5>
+			</div>
+		</div>
 	</div>
 	
 	
@@ -92,8 +93,6 @@
 
 <!-- ===================================== START FOOTER ===================================== -->
 <div class="clear"></div>
-<!-- <div id="footer">
-&copy; Copyright 2011–2012 All Rights Reserved. This website was built with <a href="http://www.99lime.com">HTML KickStart</a>
-</div> -->
+
 
 </body></html>
