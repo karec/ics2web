@@ -53,7 +53,7 @@ app.controller('planning', function ($scope, $http, $timeout, $interval, $locati
 		if (st + 4  > events.length - 1)
 			$scope.next_eve = events.slice(st);
 		else
-			$scope.next_eve = events.slice(st, + 4);
+			$scope.next_eve = events.slice(st, st + 4);
 		$scope.st += 4;
 
 

@@ -13,8 +13,11 @@ def attendee_to_login(attendee):
     if not attendee:
         return attendee
     ret = []
-    for i in attendee:
-        ret.append(i.to_ical().split('mailto:')[1].split('@')[0])
+    if not isinstance(attendee, list):
+        ret.append(attendee.to_ical().split('mailto:')[1].split('@')[0])
+    else:
+        for i in attendee:
+            ret.append(i.to_ical().split('mailto:')[1].split('@')[0])
     return ret
 
 
