@@ -76,7 +76,7 @@ div.Mathematiques {
 }
 
 
-div.INT, . {
+div.INT {
 	background: url("http://www.downloadsource.es/upload/Screeny/The%20Matrix%20Screensaver1.png") no-repeat right top;
 	/*box-shadow: 10px 10px 10px grey;*/
 	background-size: cover;
@@ -171,7 +171,7 @@ div.personne {
     background: linear-gradient(top, rgba(51, 51, 51, 0.5) 0%,rgba(61, 61, 61, 0.5) 100%); /* W3C */
     color: white;
     height: 35em;
-    padding-left: : 5px;
+    padding-left: 5px;
     /*box-shadow: 10px 10px 10px grey;*/
     
     
@@ -194,6 +194,7 @@ div.personne {
     height: 8em;
     margin: 1em auto;*/
     overflow: hidden;
+	height: 100%;
     /*background: white;*/
     position: relative;
     box-sizing: border-box;
@@ -201,8 +202,8 @@ div.personne {
 
 /* Make it move! */
 @-webkit-keyframes marquee {
-    0%  { top:   250px }
-    100% { top: -255px }
+    0%  { top:   500px }
+    100% { top: -505px }
 }
 
 @-moz-keyframes marquee {
