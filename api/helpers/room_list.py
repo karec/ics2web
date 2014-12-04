@@ -4,5 +4,5 @@ Feel Free to add anything in it.
 """
 ROOMS = dict(
     [
-      
+
     ])
