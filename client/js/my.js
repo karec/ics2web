@@ -3,13 +3,27 @@ var app = angular.module('icstoweb', []);
 
 var BASE_URL = "http://ics.evalette.net/api/get/?url=";
 
+function scrollInf() {
+	lastElementTop = $('#login').height() ;
+	scrollAmount = lastElementTop ;
+    $('#login').animate({top: (scrollAmount) * -1}, (15 * scrollAmount), 'swing', function () {
+		lastElementTop = $('#login').css('top', '225px');
+		scrollInf();
+	});
+}
+
 app.controller('planning', function ($scope, $http, $timeout, $interval, $location) {
+
+	$scope.$on('onRepeatLast', function (scope, element, attrs) {
+		scrollInf();
+	});
 
 	var loadData = function () {
 		var ics = $scope.url;
 		$http.get(ics).then(function (response) {
 
 			$scope.ics = response.data;
+
 			var len = response.data.current_events.length -1;
 			var tmp = len;
 			if (response.data.current_events.length >= 2) {
@@ -50,11 +64,11 @@ app.controller('planning', function ($scope, $http, $timeout, $interval, $locati
 			$scope.st = 0;
 			st = 0;
 		}
-		if (st + 4  > events.length - 1)
+		if (st + 5  > events.length - 1)
 			$scope.next_eve = events.slice(st);
 		else
-			$scope.next_eve = events.slice(st, st + 4);
-		$scope.st += 4;
+			$scope.next_eve = events.slice(st, st + 5);
+		$scope.st += 5;
 
 
 	};
@@ -75,6 +89,16 @@ app.controller('planning', function ($scope, $http, $timeout, $interval, $locati
 app.filter('slice', function() {
 	return function(arr, start, end) {
 		return arr.slice(start, end);
+	};
+});
+
+app.directive('onLastRepeat', function($timeout) {
+	return function(scope, element, attrs) {
+		if (scope.$last === true) {
+			 $timeout(function () {
+                scope.$emit('onRepeatLast', element, attrs);
+			 });
+		}
 	};
 });
 

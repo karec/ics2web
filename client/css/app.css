@@ -1,0 +1,96 @@
+.bg-black {
+	background-color: #2b2b2b;
+	color: white;
+}
+
+.bg-orange {
+	background-color: #f78930;
+	color: white;
+	z-index: 999;
+}
+
+.bg-white {
+	background-color: #ffffff;
+}
+
+.bg-grey {
+	background-color: #e3e3e3;
+}
+
+.footer > h5{
+	color: #e64624;
+}
+
+.no-pad-right {
+padding-right: 0;
+}
+.no-pad-left{
+padding-left: 0;
+}
+
+div.no-pad {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.borders {
+	border: 1px solid #fff;
+}
+
+h2.title {
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+	font-size: 2.75rem;
+}
+
+h3.title {
+	font-size: 2rem;
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.title {
+	color: white;
+	font-weight: bold;
+}
+
+div.event {
+	border-bottom: 1px solid #2B2B2B;
+	padding: 10px 0 10px 10px;
+}
+
+div.event:last-child {
+	border-bottom: none;
+}
+
+.events {
+	min-height: 273px;
+	max-height: 274px;
+	overflow-y: hidden;
+}
+
+.pad-right {
+	padding-right: 10px;
+}
+
+#login {
+	top: 225px;
+}
+
+.ev-name {
+	padding-left: 10px;
+}
+
+.current > h2 {
+	font-size: 5rem;
+}
+
+.current > h3 {
+	font-size: 4rem;
+}
+
+.next-day {
+	font-size: 1.25rem;
+}

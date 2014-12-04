@@ -1,0 +1,101 @@
+<!doctype html>
+<html class="no-js" lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ICS TO WEB</title>
+    <link rel="stylesheet" href="css/foundation.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="js/vendor/modernizr.js"></script>
+    <script src="js/my.js"></script>
+  </head>
+  <body class="bg-grey" data-ng-app="icstoweb" data-ng-controller="planning" data-ng-init="init()">
+    
+    <div class="large-2 columns bg-black borders">
+      <h2 class="title">ETNA</h2>
+    </div>
+   
+    <div class="large-8 columns no-pad borders">
+      <div class="large-12 bg-black">
+          <h2 class="title">Evenements en cours</h2>
+      </div>
+      <div class="large-12 text-center current">
+        <h2>Salle 301</h2>
+        <h3 ng-if="cur_eve.desc">{{ cur_eve.desc }}</h3>
+        <h3 ng-if="!cur_eve.desc">{{ cur_eve.desc }}</h3>
+        <h3>De {{cur_eve.start | date:'HH:mm:ss'}} à {{cur_eve.end | date:'HH:mm:ss'}}</h3>
+      </div>
+    </div>
+
+    <div class="large-2 columns bg-black borders">
+      <h2 class="title">TOTAL</h2>
+    </div>
+
+    <div class="large-6 columns borders no-pad events">
+
+      <div class="large-12 columns bg-orange">
+        <h3 class="title">COURS SUIVANTS</h3>
+      </div>
+
+      <div class="large-12 columns large-text-left event" data-ng-repeat="ev in next_eve">
+        {{ev.name}}
+        <span class="right pad-right">
+          De {{ev.start | date:'HH:mm'}} a {{ev.end | date:'HH:mm'}}
+        </span>
+      </div>
+
+    </div>
+
+    <div class="large-6 columns no-pad events borders">
+      <div class="bg-orange large-12 columns">
+        <h3 class="title">PERSONNES CONCERNEES</h3>
+      </div>
+
+      <div class="large-12 columns no-pad login" id="login">
+        <div class="large-12 columns no-pad" data-ng-repeat="ev in ics.current_events" on-last-repeat>
+          <div class="large-12 columns no-pad bg-black">
+            <h5 class="title text-left ev-name">{{ ev.name }}</h5>
+          </div>
+          <div class="large-12 columns large-text-left event" data-ng-repeat="login in ev.personnes">
+            {{ login }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="large-12 columns borders no-pad">
+
+      <div class="large-12 columns bg-black no-pad">
+        <h3 class="title">DEMAIN</h3>
+      </div>
+
+      <div class="large-12 columns">
+        <div class="large-12 columns">
+          <p></p>
+        </div>
+        <ul class="large-block-grid-4">
+          <li class="text-center" data-ng-repeat="ev in ics.next_day | limitTo:4">
+            <p class="bg-black next-day">
+              {{ ev.desc }}
+              <br/>
+              {{ ev.name }}
+              <br/>
+              De {{ev.start | date:'HH:mm'}} à {{ev.end | date:'HH:mm'}}
+            </p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="large-12 columns bg-black footer text-right borders">
+      <h5>
+        Thib Aurel Ludo Manu
+      </h5>
+
+
+    </div>
+  </body>
+</html>
